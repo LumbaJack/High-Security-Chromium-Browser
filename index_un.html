@@ -1,0 +1,87 @@
+<!doctype html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="keywords" content="search engine, free search, fast search, safe search,secure search"/><meta name="google-site-verification" content=""/>
+<link rel="search" type="application/opensearchdescription+xml" title="TitanBrowser Search" href="http://search.titanbrowser.com/titanbrowser.xml">
+<link rel="Shortcut Icon" href="/favicon.ico" type="image/x-icon" /> 
+<link rel="stylesheet" type="text/css" href="/css/titanbrowser.css">
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script>
+function lj(u){var head=document.getElementsByTagName("head")[0];var p=document.createElement('script');p.src=u;head.appendChild(p);};
+$(function() {
+  lj('/js/titanbrowser.js');
+  lj('/js/native.history.js');
+  lj('/js/quickbar.js');
+  lj('//l.yimg.com/rv/boss_v2/js/yjs.js');
+  $("#q").keypress(function() {
+    $('#q').unbind("keypress");
+    $('#imglogo').width(190); 
+    $('#search-box').addClass('search-top-box').removeClass('search-middle-box');
+    $('#inpwrap').addClass('search-input-wrapper-top').removeClass('search-input-wrapper');
+    $('#logo-home').addClass('logo-top').removeClass('logo-home');
+    $('#powerlogo').addClass('powered-by').removeClass('powered-by-home');
+    $('#quickbar').remove();
+    $('#wrap-footer').remove();
+    $('#wrap-search-results').show();
+    $("#q").keypress(function(e) {
+      if(e.which == 13) $("#search-button").click();
+    });
+  });
+  $("#search-button").click(function () {
+    q  = $('#q').val();
+    $.getJSON('/s.php', { q: q, type: "web", })
+      .done(function( data ) {
+      if (data.bossresponse.responsecode == 200) {
+        $("#results").empty();
+        $.each( data.bossresponse.web.results, function( i, item ) {
+           var text = "<div class='abstract'> <li class='abstract'><div class='heading'><a href=" + item.clickurl + " >" + item.title + "</a></div><div class='abstract'>" + item.abstract + "</div><div class='url'>" + item.dispurl + "</div></li></div><br>";
+           $("#results").append(text);
+        });
+        $("#ads").empty();
+        $("#right-ads").empty();
+        fire_ads(data.bossresponse.ads.dmtoken);
+      };
+     })
+  });
+});
+</script>
+<title>TitanBrowser Search - Secure, Anonymous Search Engine</title>
+<style>html,body{height:100%;}</style>
+</head>
+<body OnLoad="document.form.q.focus();" class="home">
+<div class="mainwrapper">
+   <div id="top-bar"><p>Secure and anonymous web search</p></div>
+   <div id="search-box" class='search-middle-box'>
+      <div id="logo-home" class='logo-home'><img id='imglogo' src="/images/logo-lg.png"></div>
+      <div id="sbx">
+         <form id="sf" onSubmit="return false;" name='form'>
+            <div id='inpwrap' class="search-input-wrapper">
+               <input type="text" class="search-box" size="30" tabindex="1" id="q" value="" autocomplete="off">
+               <input type="button" tabindex="2" class="search-button" id='search-button'/>
+            </div>
+         </form>
+      </div>
+      <div id="powerlogo" class='powered-by-home'><img src="/images/poweredby.png" alt="powered by Bing and Yahoo"/></div>
+      <div style="margin-top:120px;" id="quickbar"></div>
+   </div>
+   <div id="wrap-search-results" style="display:none">
+      <div id="side-nav">
+         <ul>
+            <li id="web">Web</li>
+            <li id="news">News</li>
+            <li id="images">Images</li>
+            <li id="blogs">Blogs</li>
+         </ul>
+      </div>
+      <div id="results-container">
+         <div id="results-count">
+            <span id="rStart">1</span> - <span id="rEnd"></span> of total results
+            <p>&nbsp;</p>
+         </div>
+         <div id="ads"></div>
+         <div id="results"></div> 
+      </div>
+      <div id="right-ads"></div>
+   </div>
+</div>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-42184865-1', 'titanbrowser.com');ga('send', 'pageview');</script>
+<div class="footer"><div id="wrap-footer"><div id="footer123"><div id="footer123-left">&copy; 2012-2013 Titan Browser. All rights reserved.</div><div id="footer123-right"><ul><li>&nbsp;</li><li><a href="/privacy-policy">Privacy Policy</a></li><li>|</li><li><a href="/terms-of-use">Terms of Use</a></li><li>|</li><li><a href="/about">About</a></li><li>|</li><li><a href="javascript:window.external.AddSearchProvider('/titanbrowser.xml');void(0)">Install PlugIn</a></li></ul></div></div><div></div>
+</body>
+</html>

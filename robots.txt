@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /plus/web-browser/uninstall.html
+Disallow: /plus/web-browser/thank-you.html
+Disallow: /web-browser/uninstall.html
+Disallow: /web-browser/thank-you.html
+

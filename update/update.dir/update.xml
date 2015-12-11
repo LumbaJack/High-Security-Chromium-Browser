@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<updates>
+    <update type="minor" version="3.5.3" extensionVersion="3.5.3" buildID="20090824101458" detailsURL="http://www.mozilla.com/en-US/firefox/3.5.3/releasenotes/">
+        <patch type="complete" URL="http://download.mozilla.org/?product=firefox-3.5.3-complete&amp;os=win&amp;lang=en-US" hashFunction="SHA512" hashValue="f8abbaea98bd453b651c24025dbb8cea5908e532ca64ad7150e88778ccb77c0325341c0fecbec37f31f31cdf7e13955c28140725282d2ce7c4a37c89a25319a1" size="10728423"/>
+    </update>
+</updates>
